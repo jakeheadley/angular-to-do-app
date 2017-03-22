@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myNinjaApp'>
+  <head>
+    <meta charset="utf-8">
+    <!-- Anglular JS link  -->
+    <script src="https://code.angularjs.org/1.6.3/angular.min.js"></script>
+    <!-- View port declaration  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Reset CSS -->
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- My JS file -->
+    <script src="./js/app.js"></script>
+    <title>Ninja App</title>
+  </head>
+  <body>
+    <!-- <main role="main"> -->
+      <div ng-controller="ninjaController">
+        <div class="content">
+          <input type="text" name="" value="" ng-model="search">
+          <button ng-click="order='belt'" type="button" name="order by belt">Order by Belt</button>
+          <button ng-click="order='name'" type="button" name="order by name">Order by Name</button>
+          <ul>
+            <li ng-repeat="ninja in ninjas | filter:search | orderBy:order" ng-show="{{ninja.available}}">
+              <img ng-src="{{ninja.thumb}}" alt="" width="50px">
+              <h3>Name: {{ ninja.name }} Rate: {{ ninja.rate | currency}} </h3>
+              <span class="remove" ng-click="remove(ninja)">X</span>
+              <span class="belt" style="background:{{ninja.belt}}">{{ninja.belt }}</span>
+            </li>
+          </ul>
+          <form ng-submit="addNinja()">
+            <input ng-model="newNinja.name" type="text" placeholder="Name">
+            <input ng-model="newNinja.belt" type="text" placeholder="Belt">
+            <input ng-model="newNinja.rate" type="text" placeholder="Rate">
+            <input value="Submit" type="submit">
+          </form>
+        </div>
+      </div>
+    <!-- </main> -->
+  </body>
+</html>
